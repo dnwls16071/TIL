@@ -54,3 +54,7 @@ for _ in range(T):
     print("#" + str(no) + " " + str(array[k-1]))
     no += 1
 ```
+
+▣ 문제풀이 시간 : 5m
+
+▣ 체감 난이도 : ★
