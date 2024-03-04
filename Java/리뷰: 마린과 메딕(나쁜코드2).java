@@ -1,4 +1,4 @@
-// SRP 원칙 개선
+// 객체지향관점에서 코드를 평가하는 안목을 기르자
 
 class Marine {
     String name;
