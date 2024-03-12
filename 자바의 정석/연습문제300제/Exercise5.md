@@ -294,3 +294,129 @@ public class Exercise5_10 {
 ```
 
 - Java에서 아스키 코드는 매우 빈번하게 사용이 되니 잘 기억해두자...
+
+**[5-11] 주어진 2차원 배열의 데이터보다 가로와 세로로 1이 더 큰 배열을 생성해서 배열의 행과 열의 마지막 요소에 각 열과 행의 총합을 저장하고 출력하는 프로그램이다. (1)에 알맞은 코드를 넣으시오.**
+
+```java
+package Exercise5;
+
+public class Exercise5_11 {
+    public static void main(String[] args) {
+        int[][] score = {
+                {100, 100, 100},
+                {20, 20, 20},
+                {30, 30, 30},
+                {40, 40, 40},
+                {50, 50, 50}
+        };
+
+        int[][] result = new int[score.length+1][score[0].length+1];
+
+        for (int i = 0; i < score.length; i++) {
+            for (int j = 0; j < score[i].length; j++) {
+                result[i][j] = score[i][j];
+                result[i][score[i].length] += result[i][j];
+                result[score.length][j] += result[i][j];
+                result[score.length][score[i].length] += result[i][j];
+            }
+        }
+
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[i].length; j++) {
+                System.out.printf("%4d", result[i][j]);
+            }
+            System.out.println();
+        }
+    }
+}
+```
+
+**[5-12] 예제 5-23을 변경하여 아래와 같은 결과가 나오도록 하시오.**
+
+```bash
+Q1. chair의 뜻은? dmlwk
+틀렸습니다. 정답은 의자입니다.
+
+Q2. computer의 뜻은? 컴퓨터
+정답입니다.
+
+Q3. integer의 뜻은? 정수
+정답입니다.
+```
+
+```java
+package Exercise5;
+
+import java.util.Scanner;
+
+public class Exercise5_12 {
+    public static void main(String[] args) {
+        String[][] words = {
+                {"chair", "의자"},
+                {"computer", "컴퓨터"},
+                {"integer", "정수"}
+        };
+
+        int score = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        for (int i = 0; i < words.length; i++) {
+            System.out.printf("Q%d. %s의 뜻은? ", i+1, words[i][0]);
+
+            String temp = scanner.nextLine();
+
+            if (temp.equals(words[i][1])) {
+                System.out.println("정답입니다.");
+                score += 1;
+            } else {
+                System.out.printf("틀렸습니다. 정답은 %s입니다.\n", words[i][1]);
+            }
+
+            System.out.println();
+        }
+
+        System.out.printf("전체 %d문제 중 %d문제 맞추셨습니다.", words.length, score);
+    }
+}
+```
+
+**[5-13] 단어의 글자위치를 무작위로 섞어서 보여주고 원래의 단어를 맞추는 예제이다. 실행결과와 같이 동작하도록 예제의 빈 곳을 채우시오.**
+
+```java
+package Exercise5;
+
+import java.util.Scanner;
+
+public class Exercise5_13 {
+    public static void main(String[] args) {
+        String[] words = {"television", "computer", "mouse", "phone"};
+
+        Scanner scanner = new Scanner(System.in);
+
+        for (int i = 0; i < words.length; i++) {
+            char[] question = words[i].toCharArray();
+
+            for (int j = 0; j < question.length; j++) {
+                int randomIdx = (int) (Math.random() * question.length);
+                char tmp = question[j];
+                question[j] = question[randomIdx];
+                question[randomIdx] = tmp;
+            }
+
+            System.out.printf("Q%d. %s의 정답을 입력하세요.>", i+1, new String(question));
+
+            String answer = scanner.nextLine();
+
+            if (answer.trim().equals(words[i])) {
+                System.out.println("맞았습니다.");
+            } else {
+                System.out.println("틀렸습니다.");
+            }
+
+            System.out.println();
+        }
+    }
+}
+```
+
+- `trim()` : 문자열 앞뒤의 공백을 제거하기 위해 사용하는 메서드
