@@ -15,3 +15,70 @@
 - Scanner 객체 생성시에 파라미터로 `System.in`을 넘기는데 이 때, `in`이 키보드 입력을 가리킨다.
 
 - 키보드 입력의 경우 `close()`를 사용하지 않아도 상관이 없지만 리소스를 사용하는 경우(파일 등)에는 안전을 위해 `close()`를 사용하는 것을 권장한다.
+
+---
+
+# next() vs nextLine()
+
+```java
+package practice3;
+
+import java.util.Scanner;
+
+public class nextLineEx {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            String str = scanner.nextLine();
+            if (str.equals("exit")) {
+                System.out.println("프로그램을 종료합니다...");
+                scanner.close();
+                break;
+            } else {
+                System.out.println(str);
+            }
+        }
+    }
+}
+```
+
+실행 결과
+```bash
+견우와 직녀
+```
+
+```java
+package practice3;
+
+import java.util.Scanner;
+
+public class nextEx {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            String str = scanner.next();
+            if (str.equals("exit")) {
+                System.out.println("프로그램을 종료합니다...");
+                scanner.close();
+                break;
+            } else {
+                System.out.println(str);
+            }
+        }
+    }
+}
+```
+
+실행 결과
+```bash
+견우와
+직녀
+```
+
+- next()와 nextLine()의 차이점은 개행문자(\n)를 무시하느냐 무시하지 않느냐의 차이다.
+
+- next()의 경우 공백을 기준으로 한 단어 또는 한 문자씩을 입력받는다.
+
+- nextLine()의 경우 문자 또는 엔터를 치기 전까지의 문장 전체를 입력받는다.
