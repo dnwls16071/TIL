@@ -38,7 +38,7 @@ deque객체를 리스트로 변경하고자 한다면 list() 메서드를 이용
 
 ---
 
-## 재귀 함수(Recursive Runction)
+## 재귀 함수(Recursive Function)
 
 재귀 함수란, 자기 자신을 호출하는 함수를 말한다.
 
